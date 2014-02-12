@@ -8,6 +8,7 @@ Required min API level 5
 
 USAGE
 ------
+```java
     mMenu = (BottomLeftMenuView) findViewById(R.id.bottom_left_menu);
 
     mMenu.setOnCustomMenuItemClickHandler(this);
@@ -19,9 +20,10 @@ USAGE
     mMenu.addMenuItem(new BottomLeftMenuItemView(this, R.drawable.ic_social_share, R.string.share, _MENU_ID_SHARE));
     mMenu.addMenuItem(new BottomLeftMenuItemView(this, R.drawable.ic_collections_cloud, R.string.upload, _MENU_ID_UPLOAD));
     mMenu.addMenuItem(new BottomLeftMenuItemView(this, R.drawable.ic_social_send_now, R.string.send, _MENU_ID_SEND));
-
+```
 You might want to override **onBackPressed()** and **onKeyDown(int keyCode, KeyEvent event)** for opening and closing the menu:
 
+```java
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
@@ -47,7 +49,7 @@ You might want to override **onBackPressed()** and **onKeyDown(int keyCode, KeyE
         }
     }
 
-
+```
 For a full working example, please browse the **src** directory in this repository, and look for UsageExampleActivity.java
 Inside the **bin** directory you can find the **apk** file of this demonstration.
 

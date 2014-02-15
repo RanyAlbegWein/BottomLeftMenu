@@ -3,7 +3,7 @@
 
 ![Alt text](screenshot.jpg "BottomLeftMenuView Samsung Galaxy S2")
 
-Required min API level 5
+Required min API level 8
 -------------------------
 
 USAGE

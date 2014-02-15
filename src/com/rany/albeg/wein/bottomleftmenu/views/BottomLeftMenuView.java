@@ -12,18 +12,16 @@ import android.widget.LinearLayout;
 
 import com.rany.albeg.wein.bottomleftmenu.R;
 import com.rany.albeg.wein.bottomleftmenu.interfaces.OnBottomLeftMenuItemClickHandler;
-import com.rany.albeg.wein.bottomleftmenu.interfaces.OnBottomLeftMenuItemClickListener;
 
-public class BottomLeftMenuView extends LinearLayout implements OnClickListener,
-		OnBottomLeftMenuItemClickListener {
+public class BottomLeftMenuView extends LinearLayout implements OnClickListener {
 
-	private boolean _isOpened;
-	private Animation _animOpen;
-	private Animation _animClose;
-	private Animation _animBlink;
-	private OnBottomLeftMenuItemClickHandler _onCustomMenuItemClickHandler;
-	private final static int _HIGHLIGHT_MENU_ITEM_DURATION;
-	private final static int _HIGHLIGHT_REPETITIONS;
+	private boolean								_isOpened;
+	private Animation							_animOpen;
+	private Animation							_animClose;
+	private Animation							_animBlink;
+	private OnBottomLeftMenuItemClickHandler	_onCustomMenuItemClickHandler;
+	private final static int					_HIGHLIGHT_MENU_ITEM_DURATION;
+	private final static int					_HIGHLIGHT_REPETITIONS;
 
 	static {
 		_HIGHLIGHT_MENU_ITEM_DURATION = 500;
@@ -37,8 +35,7 @@ public class BottomLeftMenuView extends LinearLayout implements OnClickListener,
 		setOrientation(LinearLayout.VERTICAL);
 
 		_animOpen = AnimationUtils.loadAnimation(context, R.anim.slide_up_in);
-		_animClose = AnimationUtils.loadAnimation(context,
-				R.anim.slide_down_out);
+		_animClose = AnimationUtils.loadAnimation(context, R.anim.slide_down_out);
 
 		_animBlink = new AlphaAnimation(1, 0);
 		_animBlink.setDuration(_HIGHLIGHT_MENU_ITEM_DURATION);
@@ -102,13 +99,7 @@ public class BottomLeftMenuView extends LinearLayout implements OnClickListener,
 		closeMenu();
 		BottomLeftMenuItemView cmv = (BottomLeftMenuItemView) v;
 		if (_onCustomMenuItemClickHandler != null)
-			onCustomMenuItemClick(cmv);
+			_onCustomMenuItemClickHandler.onClick(cmv);
 	}
 
-	@Override
-	public void onCustomMenuItemClick(BottomLeftMenuItemView item) {
-		if (_onCustomMenuItemClickHandler != null)
-			_onCustomMenuItemClickHandler.onClick(item);
-
-	}
 }

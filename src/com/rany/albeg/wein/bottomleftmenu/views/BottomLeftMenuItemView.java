@@ -47,7 +47,7 @@ public class BottomLeftMenuItemView extends LinearLayout {
 		return _identifier;
 	}
 
-	private void initChildViews(int iconResource, int textResouce) {
+	private void initChildViews(int iconResource, int textResource) {
 		_image = new ImageView(_cntx);
 		_text = new TextView(_cntx);
 
@@ -70,7 +70,7 @@ public class BottomLeftMenuItemView extends LinearLayout {
 		_text.setGravity(Gravity.START);
 		_text.setPadding(DEFAULT_TEXT_PADDING, DEFAULT_TEXT_PADDING,
 				DEFAULT_TEXT_PADDING, DEFAULT_TEXT_PADDING);
-		_text.setText(textResouce);
+		_text.setText(textResource);
 		_text.setTextSize(DEFAULT_TEXT_SIZE);
 		_text.setTextColor(DEFAULT_TEXT_COLOR);
 	}

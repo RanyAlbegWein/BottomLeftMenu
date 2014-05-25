@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">BottomLeftMenu</string>
-    <string name="text_view_press_settings">Press the device settings button to slide the menu up</string>
+    <string name="text_view_press_settings">Press the settings button to slide the menu up and down</string>
     <string name="settings">Settings</string>
     <string name="about">About</string>
     <string name="rate">Rate</string>
@@ -10,6 +10,7 @@
     <string name="share">Share</string>
     <string name="upload">Upload</string>
     <string name="send">Send</string>
-    <string name="enable_random_blink_anim">Enalbe random item blink animation.</string>
+    <string name="enable_random_blink_anim">Blink animation</string>
+    <string name="settings_btn">Settings</string>
 
 </resources>

@@ -1,3 +1,19 @@
+/* Copyright (C) 2014 Rany Albeg Wein - rany.albeg@gmail.com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
 package com.rany.albeg.wein.bottomleftmenu.views;
 
 import android.content.Context;
@@ -12,40 +28,40 @@ import android.widget.LinearLayout;
 
 import com.rany.albeg.wein.bottomleftmenu.R;
 import com.rany.albeg.wein.bottomleftmenu.interfaces.OnBottomLeftMenuItemClickHandler;
+import com.rany.albeg.wein.bottomleftmenu.interfaces.OnBottomLeftMenuItemClickListener;
 
-public class BottomLeftMenuView extends LinearLayout implements OnClickListener {
+public class BottomLeftMenuView extends LinearLayout implements OnClickListener, OnBottomLeftMenuItemClickListener {
 
-	private boolean								_isOpened;
-	private Animation							_animOpen;
-	private Animation							_animClose;
-	private Animation							_animBlink;
-	private OnBottomLeftMenuItemClickHandler	_onCustomMenuItemClickHandler;
-	private final static int					_HIGHLIGHT_MENU_ITEM_DURATION;
-	private final static int					_HIGHLIGHT_REPETITIONS;
+	private final static int					_HIGHLIGHT_MENU_ITEM_DURATION	= 500;
+	private final static int					_HIGHLIGHT_REPETITIONS			= 4;
 
-	static {
-		_HIGHLIGHT_MENU_ITEM_DURATION = 500;
-		_HIGHLIGHT_REPETITIONS = 4;
-	}
+	private boolean								mIsOpened;
+	private Animation							mOpenAnimation;
+	private Animation							mCloseAnimation;
+	private Animation							mBlinkAnimation;
+	private OnBottomLeftMenuItemClickHandler	mOnCustomMenuItemClickHandler;
 
 	public BottomLeftMenuView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		init(context);
+	}
 
-		_isOpened = getVisibility() == View.VISIBLE ? true : false;
+	private void init(Context context) {
+		mIsOpened = getVisibility() == View.VISIBLE ? true : false;
 		setOrientation(LinearLayout.VERTICAL);
 
-		_animOpen = AnimationUtils.loadAnimation(context, R.anim.slide_up_in);
-		_animClose = AnimationUtils.loadAnimation(context, R.anim.slide_down_out);
+		mOpenAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_up_in);
+		mCloseAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_down_out);
 
-		_animBlink = new AlphaAnimation(1, 0);
-		_animBlink.setDuration(_HIGHLIGHT_MENU_ITEM_DURATION);
-		_animBlink.setInterpolator(new LinearInterpolator());
-		_animBlink.setRepeatCount(_HIGHLIGHT_REPETITIONS);
-		_animBlink.setRepeatMode(Animation.REVERSE);
+		mBlinkAnimation = new AlphaAnimation(1, 0);
+		mBlinkAnimation.setDuration(_HIGHLIGHT_MENU_ITEM_DURATION);
+		mBlinkAnimation.setInterpolator(new LinearInterpolator());
+		mBlinkAnimation.setRepeatCount(_HIGHLIGHT_REPETITIONS);
+		mBlinkAnimation.setRepeatMode(Animation.REVERSE);
 	}
 
 	public void setOnCustomMenuItemClickHandler(OnBottomLeftMenuItemClickHandler l) {
-		_onCustomMenuItemClickHandler = l;
+		mOnCustomMenuItemClickHandler = l;
 	}
 
 	public void addMenuItem(BottomLeftMenuItemView v) {
@@ -54,41 +70,42 @@ public class BottomLeftMenuView extends LinearLayout implements OnClickListener 
 	}
 
 	public boolean isOpened() {
-		return _isOpened;
+		return mIsOpened;
 	}
 
 	public void openMenu() {
-		if (!_isOpened) {
+		if (!mIsOpened) {
 			setVisibility(View.VISIBLE);
-			startAnimation(_animOpen);
-			_isOpened = true;
+			startAnimation(mOpenAnimation);
+			mIsOpened = true;
 		}
 	}
 
 	public void closeMenu() {
-		if (_isOpened) {
+		if (mIsOpened) {
 			setVisibility(View.GONE);
-			startAnimation(_animClose);
-			_isOpened = false;
+			startAnimation(mCloseAnimation);
+			mIsOpened = false;
 		}
 
-		if (!_animBlink.hasEnded()) {
-			_animBlink.cancel();
-			_animBlink.reset();
+		if (!mBlinkAnimation.hasEnded()) {
+			mBlinkAnimation.cancel();
+			mBlinkAnimation.reset();
 		}
 	}
 
-	public void blinkAnimationMenuItem(int identifier) {
+	public void blink(int identifier) {
 
-		if (!_isOpened)
+		if (!mIsOpened)
 			openMenu();
 
 		int i;
 		BottomLeftMenuItemView v;
+
 		for (i = 0; i < getChildCount(); ++i) {
 			v = (BottomLeftMenuItemView) getChildAt(i);
 			if (v.getIdentifier() == identifier) {
-				v.startAnimation(_animBlink);
+				v.startAnimation(mBlinkAnimation);
 				break;
 			}
 		}
@@ -98,8 +115,15 @@ public class BottomLeftMenuView extends LinearLayout implements OnClickListener 
 
 		closeMenu();
 		BottomLeftMenuItemView cmv = (BottomLeftMenuItemView) v;
-		if (_onCustomMenuItemClickHandler != null)
-			_onCustomMenuItemClickHandler.onClick(cmv);
+
+		if (mOnCustomMenuItemClickHandler != null)
+			onCustomMenuItemClick(cmv);
 	}
 
+	@Override
+	public void onCustomMenuItemClick(BottomLeftMenuItemView item) {
+		if (mOnCustomMenuItemClickHandler != null)
+			mOnCustomMenuItemClickHandler.onClick(item);
+
+	}
 }

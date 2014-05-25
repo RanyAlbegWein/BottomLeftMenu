@@ -6,12 +6,24 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="194dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
         android:gravity="center"
         android:text="@string/text_view_press_settings"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#696969"
+        android:textStyle="bold" />
+
+    <CheckBox
+        android:id="@+id/cb_anim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:text="@string/enable_random_blink_anim"
+        android:textColor="#696969"
+        android:textStyle="bold" />
 
     <com.rany.albeg.wein.bottomleftmenu.views.BottomLeftMenuView
         android:id="@+id/bottom_left_menu"
@@ -21,13 +33,5 @@
         android:background="@drawable/custom_menu_bg"
         android:visibility="gone" >
     </com.rany.albeg.wein.bottomleftmenu.views.BottomLeftMenuView>
-
-    <CheckBox
-        android:id="@+id/cb_anim"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/enable_random_blink_anim" />
 
 </RelativeLayout>

@@ -1,3 +1,19 @@
+/* Copyright (C) 2014 Rany Albeg Wein - rany.albeg@gmail.com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
 package com.rany.albeg.wein.bottomleftmenu.views;
 
 import android.content.Context;
@@ -11,22 +27,21 @@ import com.rany.albeg.wein.bottomleftmenu.R;
 
 public class BottomLeftMenuItemView extends LinearLayout {
 
-	private TextView _text;
-	private ImageView _image;
-	private int _identifier;
-	private Context _cntx;
+	private TextView			mText;
+	private ImageView			mImage;
+	private int					mIdentifier;
+	private Context				mContext;
 
-	private static final int DEFAULT_TEXT_SIZE = 22;
-	private static final int DEFAULT_TEXT_PADDING = 5;
-	private static final int DEFAULT_TEXT_COLOR = Color.BLACK;
-	private static final int DEFAULT_TEXT_RIGHT_MARGIN = 20;
-	private static final int DEFAULT_ICON_PADDING = 5;
+	private static final int	_DEFAULT_TEXT_SIZE			= 22;
+	private static final int	_DEFAULT_TEXT_PADDING		= 5;
+	private static final int	_DEFAULT_TEXT_COLOR			= Color.BLACK;
+	private static final int	_DEFAULT_TEXT_RIGHT_MARGIN	= 20;
+	private static final int	_DEFAULT_ICON_PADDING		= 5;
 
-	public BottomLeftMenuItemView(Context context, int iconResource,
-			int textResouce, int identifier) {
+	public BottomLeftMenuItemView(Context context, int iconResource, int textResouce, int identifier) {
 		super(context);
 
-		_cntx = context;
+		mContext = context;
 
 		LinearLayout.LayoutParams thisLayoutParams = new LinearLayout.LayoutParams(
 				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
@@ -36,43 +51,41 @@ public class BottomLeftMenuItemView extends LinearLayout {
 
 		setLayoutParams(thisLayoutParams);
 
-		_identifier = identifier;
+		mIdentifier = identifier;
 		initChildViews(iconResource, textResouce);
 
-		addView(_image);
-		addView(_text);
+		addView(mImage);
+		addView(mText);
 	}
 
 	public int getIdentifier() {
-		return _identifier;
+		return mIdentifier;
 	}
 
-	private void initChildViews(int iconResource, int textResource) {
-		_image = new ImageView(_cntx);
-		_text = new TextView(_cntx);
+	private void initChildViews(int iconResource, int textResouce) {
+		mImage = new ImageView(mContext);
+		mText = new TextView(mContext);
 
 		LinearLayout.LayoutParams imageLayoutParams = new LinearLayout.LayoutParams(
 				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 		imageLayoutParams.gravity = Gravity.CENTER;
 
-		_image.setImageResource(iconResource);
-		_image.setPadding(DEFAULT_ICON_PADDING, DEFAULT_ICON_PADDING,
-				DEFAULT_ICON_PADDING, DEFAULT_ICON_PADDING);
-		_image.setLayoutParams(imageLayoutParams);
+		mImage.setImageResource(iconResource);
+		mImage.setPadding(_DEFAULT_ICON_PADDING, _DEFAULT_ICON_PADDING, _DEFAULT_ICON_PADDING, _DEFAULT_ICON_PADDING);
+		mImage.setLayoutParams(imageLayoutParams);
 
 		LinearLayout.LayoutParams textLayoutParams = new LinearLayout.LayoutParams(
 				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
 		textLayoutParams.gravity = Gravity.CENTER;
-		textLayoutParams.setMargins(0, 0, DEFAULT_TEXT_RIGHT_MARGIN, 0);
+		textLayoutParams.setMargins(0, 0, _DEFAULT_TEXT_RIGHT_MARGIN, 0);
 
-		_text.setLayoutParams(textLayoutParams);
-		_text.setGravity(Gravity.START);
-		_text.setPadding(DEFAULT_TEXT_PADDING, DEFAULT_TEXT_PADDING,
-				DEFAULT_TEXT_PADDING, DEFAULT_TEXT_PADDING);
-		_text.setText(textResource);
-		_text.setTextSize(DEFAULT_TEXT_SIZE);
-		_text.setTextColor(DEFAULT_TEXT_COLOR);
+		mText.setLayoutParams(textLayoutParams);
+		mText.setGravity(Gravity.LEFT);
+		mText.setPadding(_DEFAULT_TEXT_PADDING, _DEFAULT_TEXT_PADDING, _DEFAULT_TEXT_PADDING, _DEFAULT_TEXT_PADDING);
+		mText.setText(textResouce);
+		mText.setTextSize(_DEFAULT_TEXT_SIZE);
+		mText.setTextColor(_DEFAULT_TEXT_COLOR);
 	}
 
 }

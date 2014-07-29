@@ -8,6 +8,24 @@ Required min API level 8
 
 USAGE
 ------
+Add the menu to your XML layout file:
+```java
+<RelativeLayout
+
+    ...
+
+    <com.rany.albeg.wein.bottomleftmenu.views.BottomLeftMenu
+        android:id="@+id/bottom_left_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/custom_menu_bg"
+        android:visibility="gone" >
+    </com.rany.albeg.wein.bottomleftmenu.views.BottomLeftMenu>
+
+</RelativeLayout>
+```
+Use the menu in java code, like so:
 ```java
 mMenu = (BottomLeftMenuView) findViewById(R.id.bottom_left_menu);
 /*
@@ -23,7 +41,7 @@ mMenu.addMenuItem(this, R.drawable.ic_social_send_now, R.string.send, _MENU_ID_S
 /*
  * Set a listener for click events.
  */
-mMenu.setOnCustomMenuItemClickListener(this);
+mMenu.setOnBottomLeftMenuItemClickListener(this);
 ```
 
 You might want to override **onBackPressed()** and **onKeyDown(int keyCode, KeyEvent event)** for opening and closing the menu:

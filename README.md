@@ -72,9 +72,6 @@ public void onBackPressed() {
     }
 }
 ```
-For a full working example, please browse the **src** directory in this repository, and look for UsageExampleActivity.java.
-Inside the **bin** directory you can find the **apk** file of this demonstration.
-
 AUTHOR
 -------
 

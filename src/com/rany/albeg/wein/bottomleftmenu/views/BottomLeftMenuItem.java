@@ -25,7 +25,7 @@ import android.widget.TextView;
 
 import com.rany.albeg.wein.bottomleftmenu.R;
 
-public class BottomLeftMenuItemView extends LinearLayout {
+public class BottomLeftMenuItem extends LinearLayout {
 
 	private TextView			mText;
 	private ImageView			mImage;
@@ -38,7 +38,7 @@ public class BottomLeftMenuItemView extends LinearLayout {
 	private static final int	_DEFAULT_TEXT_RIGHT_MARGIN	= 20;
 	private static final int	_DEFAULT_ICON_PADDING		= 5;
 
-	public BottomLeftMenuItemView(Context context, int iconResource, int textResouce, int identifier) {
+	public BottomLeftMenuItem(Context context, int iconResource, int textResouce, int identifier) {
 		super(context);
 
 		mContext = context;

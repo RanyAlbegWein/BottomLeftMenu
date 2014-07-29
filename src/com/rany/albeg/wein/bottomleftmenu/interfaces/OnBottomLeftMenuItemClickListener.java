@@ -16,8 +16,9 @@
  */
 package com.rany.albeg.wein.bottomleftmenu.interfaces;
 
-import com.rany.albeg.wein.bottomleftmenu.views.BottomLeftMenuItemView;
+import com.rany.albeg.wein.bottomleftmenu.views.BottomLeftMenuItem;
 
 public interface OnBottomLeftMenuItemClickListener {
-	public void onCustomMenuItemClick(BottomLeftMenuItemView item);
+
+	public void onClick(BottomLeftMenuItem item);
 }

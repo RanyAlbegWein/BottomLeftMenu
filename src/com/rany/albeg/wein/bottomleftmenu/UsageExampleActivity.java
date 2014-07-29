@@ -27,11 +27,11 @@ import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
-import com.rany.albeg.wein.bottomleftmenu.interfaces.OnBottomLeftMenuItemClickHandler;
-import com.rany.albeg.wein.bottomleftmenu.views.BottomLeftMenuItemView;
-import com.rany.albeg.wein.bottomleftmenu.views.BottomLeftMenuView;
+import com.rany.albeg.wein.bottomleftmenu.interfaces.OnBottomLeftMenuItemClickListener;
+import com.rany.albeg.wein.bottomleftmenu.views.BottomLeftMenuItem;
+import com.rany.albeg.wein.bottomleftmenu.views.BottomLeftMenu;
 
-public class UsageExampleActivity extends Activity implements OnBottomLeftMenuItemClickHandler {
+public class UsageExampleActivity extends Activity implements OnBottomLeftMenuItemClickListener {
 
 	private static final int	_MENU_ID_UPLOAD		= 0;
 	private static final int	_MENU_ID_SHARE		= 1;
@@ -41,7 +41,7 @@ public class UsageExampleActivity extends Activity implements OnBottomLeftMenuIt
 	private static final int	_MENU_ID_SEARCH		= 5;
 	private static final int	_MENU_ID_SETTINGS	= 6;
 
-	private BottomLeftMenuView	mMenu;
+	private BottomLeftMenu		mMenu;
 	private CheckBox			mCheckBoxAnim;
 
 	@Override
@@ -53,22 +53,22 @@ public class UsageExampleActivity extends Activity implements OnBottomLeftMenuIt
 		/*
 		 * Initialize menu.
 		 */
-		mMenu.setOnCustomMenuItemClickHandler(this);
+		mMenu.setOnCustomMenuItemClickListener(this);
 		/*
 		 * Populate the menu with views.
 		 */
-		mMenu.addMenuItem(new BottomLeftMenuItemView(this, R.drawable.ic_action_settings, R.string.settings, _MENU_ID_SETTINGS));
-		mMenu.addMenuItem(new BottomLeftMenuItemView(this, R.drawable.ic_action_about, R.string.about, _MENU_ID_ABOUT));
-		mMenu.addMenuItem(new BottomLeftMenuItemView(this, R.drawable.ic_rating_good, R.string.rate, _MENU_ID_RATE));
-		mMenu.addMenuItem(new BottomLeftMenuItemView(this, R.drawable.ic_action_search, R.string.search, _MENU_ID_SEARCH));
-		mMenu.addMenuItem(new BottomLeftMenuItemView(this, R.drawable.ic_social_share, R.string.share, _MENU_ID_SHARE));
-		mMenu.addMenuItem(new BottomLeftMenuItemView(this, R.drawable.ic_collections_cloud, R.string.upload, _MENU_ID_UPLOAD));
-		mMenu.addMenuItem(new BottomLeftMenuItemView(this, R.drawable.ic_social_send_now, R.string.send, _MENU_ID_SEND));
+		mMenu.addMenuItem(this, R.drawable.ic_action_settings, R.string.settings, _MENU_ID_SETTINGS);
+		mMenu.addMenuItem(this, R.drawable.ic_action_about, R.string.about, _MENU_ID_ABOUT);
+		mMenu.addMenuItem(this, R.drawable.ic_rating_good, R.string.rate, _MENU_ID_RATE);
+		mMenu.addMenuItem(this, R.drawable.ic_action_search, R.string.search, _MENU_ID_SEARCH);
+		mMenu.addMenuItem(this, R.drawable.ic_social_share, R.string.share, _MENU_ID_SHARE);
+		mMenu.addMenuItem(this, R.drawable.ic_collections_cloud, R.string.upload, _MENU_ID_UPLOAD);
+		mMenu.addMenuItem(this, R.drawable.ic_social_send_now, R.string.send, _MENU_ID_SEND);
 	}
 
 	private void findViewsByid() {
 		mCheckBoxAnim = (CheckBox) findViewById(R.id.cb_anim);
-		mMenu = (BottomLeftMenuView) findViewById(R.id.bottom_left_menu);
+		mMenu = (BottomLeftMenu) findViewById(R.id.bottom_left_menu);
 	}
 
 	@Override
@@ -106,14 +106,14 @@ public class UsageExampleActivity extends Activity implements OnBottomLeftMenuIt
 	}
 
 	/*
-	 * Handle presses on the BottmLeftMenu (non-Javadoc)
+	 * Handle BottomLeftMenu click events.(non-Javadoc)
 	 * 
 	 * @see com.rany.albeg.wein.bottomleftmenu.interfaces.
-	 * OnBottomLeftMenuItemClickHandler
-	 * #onClick(com.rany.albeg.wein.bottomleftmenu.views.BottomLeftMenuItemView)
+	 * OnBottomLeftMenuItemClickListener
+	 * #onClick(com.rany.albeg.wein.bottomleftmenu.views.BottomLeftMenuItem)
 	 */
 	@Override
-	public void onClick(BottomLeftMenuItemView item) {
+	public void onClick(BottomLeftMenuItem item) {
 
 		/*
 		 * getIdentifier(), not getId()

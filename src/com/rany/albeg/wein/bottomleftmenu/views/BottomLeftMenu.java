@@ -27,10 +27,9 @@ import android.view.animation.LinearInterpolator;
 import android.widget.LinearLayout;
 
 import com.rany.albeg.wein.bottomleftmenu.R;
-import com.rany.albeg.wein.bottomleftmenu.interfaces.OnBottomLeftMenuItemClickHandler;
 import com.rany.albeg.wein.bottomleftmenu.interfaces.OnBottomLeftMenuItemClickListener;
 
-public class BottomLeftMenuView extends LinearLayout implements OnClickListener, OnBottomLeftMenuItemClickListener {
+public class BottomLeftMenu extends LinearLayout implements OnClickListener {
 
 	private final static int					_HIGHLIGHT_MENU_ITEM_DURATION	= 500;
 	private final static int					_HIGHLIGHT_REPETITIONS			= 4;
@@ -39,20 +38,20 @@ public class BottomLeftMenuView extends LinearLayout implements OnClickListener,
 	private Animation							mOpenAnimation;
 	private Animation							mCloseAnimation;
 	private Animation							mBlinkAnimation;
-	private OnBottomLeftMenuItemClickHandler	mOnCustomMenuItemClickHandler;
+	private OnBottomLeftMenuItemClickListener	mOnCustomMenuItemClickListener;
 
-	public BottomLeftMenuView(Context context, AttributeSet attrs) {
+	public BottomLeftMenu(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		init(context);
 	}
 
 	private void init(Context context) {
-		mIsOpened = getVisibility() == View.VISIBLE ? true : false;
+
 		setOrientation(LinearLayout.VERTICAL);
 
+		mIsOpened = getVisibility() == View.VISIBLE ? true : false;
 		mOpenAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_up_in);
 		mCloseAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_down_out);
-
 		mBlinkAnimation = new AlphaAnimation(1, 0);
 		mBlinkAnimation.setDuration(_HIGHLIGHT_MENU_ITEM_DURATION);
 		mBlinkAnimation.setInterpolator(new LinearInterpolator());
@@ -60,13 +59,17 @@ public class BottomLeftMenuView extends LinearLayout implements OnClickListener,
 		mBlinkAnimation.setRepeatMode(Animation.REVERSE);
 	}
 
-	public void setOnCustomMenuItemClickHandler(OnBottomLeftMenuItemClickHandler l) {
-		mOnCustomMenuItemClickHandler = l;
+	public void setOnCustomMenuItemClickListener(OnBottomLeftMenuItemClickListener l) {
+		mOnCustomMenuItemClickListener = l;
 	}
 
-	public void addMenuItem(BottomLeftMenuItemView v) {
-		v.setOnClickListener(this);
-		addView(v);
+	private void addMenuItem(BottomLeftMenuItem item) {
+		item.setOnClickListener(this);
+		addView(item);
+	}
+
+	public void addMenuItem(Context context, int iconResource, int textResouce, int identifier) {
+		addMenuItem(new BottomLeftMenuItem(context, iconResource, textResouce, identifier));
 	}
 
 	public boolean isOpened() {
@@ -100,12 +103,12 @@ public class BottomLeftMenuView extends LinearLayout implements OnClickListener,
 			openMenu();
 
 		int i;
-		BottomLeftMenuItemView v;
+		BottomLeftMenuItem item;
 
 		for (i = 0; i < getChildCount(); ++i) {
-			v = (BottomLeftMenuItemView) getChildAt(i);
-			if (v.getIdentifier() == identifier) {
-				v.startAnimation(mBlinkAnimation);
+			item = (BottomLeftMenuItem) getChildAt(i);
+			if (item.getIdentifier() == identifier) {
+				item.startAnimation(mBlinkAnimation);
 				break;
 			}
 		}
@@ -114,16 +117,9 @@ public class BottomLeftMenuView extends LinearLayout implements OnClickListener,
 	public void onClick(View v) {
 
 		closeMenu();
-		BottomLeftMenuItemView cmv = (BottomLeftMenuItemView) v;
+		BottomLeftMenuItem item = (BottomLeftMenuItem) v;
 
-		if (mOnCustomMenuItemClickHandler != null)
-			onCustomMenuItemClick(cmv);
-	}
-
-	@Override
-	public void onCustomMenuItemClick(BottomLeftMenuItemView item) {
-		if (mOnCustomMenuItemClickHandler != null)
-			mOnCustomMenuItemClickHandler.onClick(item);
-
+		if (mOnCustomMenuItemClickListener != null)
+			mOnCustomMenuItemClickListener.onClick(item);
 	}
 }

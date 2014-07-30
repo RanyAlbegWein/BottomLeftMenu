@@ -48,7 +48,9 @@ mMenu.setOnBottomLeftMenuItemClickListener(this);
 ```
 Get a reference to each one of the items in the menu, by:
 ```java
-BottomLeftMenuitem item = mMenu.getMenuItemAt(index);
+BottomLeftMenuItem item = mMenu.getMenuItemAt(index);
+TextView itemText= item.getTextView();
+ImageView itemIcon = item.getImageView();
 ```
 You might want to override **onBackPressed()** and **onKeyDown(int keyCode, KeyEvent event)** for opening and closing the menu:
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="BottomLeftMenu">
+        <attr name="itemTextColor" format="color" />
+        <attr name="itemTextSize" format="dimension" />
+    </declare-styleable>
+
+</resources>

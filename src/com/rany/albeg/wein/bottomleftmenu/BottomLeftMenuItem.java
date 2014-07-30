@@ -17,13 +17,10 @@
 package com.rany.albeg.wein.bottomleftmenu;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.rany.albeg.wein.bottomleftmenu.R;
 
 public class BottomLeftMenuItem extends LinearLayout {
 
@@ -32,9 +29,7 @@ public class BottomLeftMenuItem extends LinearLayout {
 	private int					mIdentifier;
 	private Context				mContext;
 
-	private static final int	_DEFAULT_TEXT_SIZE			= 22;
 	private static final int	_DEFAULT_TEXT_PADDING		= 5;
-	private static final int	_DEFAULT_TEXT_COLOR			= Color.BLACK;
 	private static final int	_DEFAULT_TEXT_RIGHT_MARGIN	= 20;
 	private static final int	_DEFAULT_ICON_PADDING		= 5;
 
@@ -83,16 +78,17 @@ public class BottomLeftMenuItem extends LinearLayout {
 		textLayoutParams.setMargins(0, 0, _DEFAULT_TEXT_RIGHT_MARGIN, 0);
 
 		mText.setLayoutParams(textLayoutParams);
-		mText.setGravity(Gravity.LEFT);
 		mText.setPadding(_DEFAULT_TEXT_PADDING, _DEFAULT_TEXT_PADDING, _DEFAULT_TEXT_PADDING, _DEFAULT_TEXT_PADDING);
 		mText.setText(textResouce);
-		mText.setTextSize(_DEFAULT_TEXT_SIZE);
-		mText.setTextColor(_DEFAULT_TEXT_COLOR);
 	}
 
 	public interface OnBottomLeftMenuItemClickListener {
 
 		public void onClick(BottomLeftMenuItem item);
+	}
+
+	public TextView getTextView() {
+		return mText;
 	}
 
 }

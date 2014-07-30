@@ -1,5 +1,7 @@
 int anim slide_down_out 0x7f030000
 int anim slide_up_in 0x7f030001
+int attr itemTextColor 0x7f010000
+int attr itemTextSize 0x7f010001
 int color blue 0x7f040000
 int dimen activity_horizontal_margin 0x7f050000
 int drawable ic_launcher 0x7f020000
@@ -9,3 +11,6 @@ int drawable menu_item_bg_pressed 0x7f020003
 int drawable menu_item_bg_states 0x7f020004
 int string app_name 0x7f060000
 int style AppBaseTheme 0x7f070000
+int[] styleable BottomLeftMenu { 0x7f010000, 0x7f010001 }
+int styleable BottomLeftMenu_itemTextColor 0
+int styleable BottomLeftMenu_itemTextSize 1

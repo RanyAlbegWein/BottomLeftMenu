@@ -17,6 +17,8 @@
 package com.rany.albeg.wein.bottomleftmenu;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,6 +35,7 @@ public class BottomLeftMenu extends ScrollView implements OnClickListener {
 
 	private final static int					_HIGHLIGHT_MENU_ITEM_DURATION	= 500;
 	private final static int					_HIGHLIGHT_REPETITIONS			= 4;
+	private final static int					_DEFAULT_ITEM_TEXT_SIZE			= 15;
 
 	private boolean								mIsOpened;
 	private Animation							mOpenAnimation;
@@ -40,10 +43,29 @@ public class BottomLeftMenu extends ScrollView implements OnClickListener {
 	private Animation							mBlinkAnimation;
 	private LinearLayout						mViewsContainer;
 	private OnBottomLeftMenuItemClickListener	mOnCustomMenuItemClickListener;
+	private int									mTextColorRes;
+	private float								mTextSize;
 
 	public BottomLeftMenu(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BottomLeftMenu);
+		initAttrs(ta);
 		init(context);
+	}
+
+	public BottomLeftMenu(Context context, AttributeSet attrs, int defStyle)
+	{
+		super(context, attrs, defStyle);
+		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BottomLeftMenu, defStyle, 0);
+		initAttrs(ta);
+		init(context);
+	}
+
+	private void initAttrs(TypedArray ta) {
+
+		mTextColorRes = ta.getColor(R.styleable.BottomLeftMenu_itemTextColor, Color.BLACK);
+		mTextSize = ta.getDimension(R.styleable.BottomLeftMenu_itemTextSize, _DEFAULT_ITEM_TEXT_SIZE);
+		ta.recycle();
 	}
 
 	private void init(Context context) {
@@ -72,6 +94,8 @@ public class BottomLeftMenu extends ScrollView implements OnClickListener {
 	}
 
 	private void addMenuItem(BottomLeftMenuItem item) {
+		item.getTextView().setTextColor(mTextColorRes);
+		item.getTextView().setTextSize(mTextSize);
 		item.setOnClickListener(this);
 		mViewsContainer.addView(item);
 	}

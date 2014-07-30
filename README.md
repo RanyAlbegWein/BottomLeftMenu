@@ -11,6 +11,7 @@ USAGE
 Add the menu to your XML layout file:
 ```java
 <RelativeLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
     ...
 
@@ -18,7 +19,11 @@ Add the menu to your XML layout file:
         android:id="@+id/bottom_left_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" >
+        android:layout_alignParentBottom="true"
+
+        app:itemTextColor="@color/dark_gray"
+        app:itemTextSize="10sp" >
+
     </com.rany.albeg.wein.bottomleftmenu.BottomLeftMenu>
 
 </RelativeLayout>

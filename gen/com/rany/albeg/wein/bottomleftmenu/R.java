@@ -13,6 +13,23 @@ public final class R {
         public static int slide_up_in=0x7f030001;
     }
     public static final class attr {
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int itemTextColor=0x7f010000;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int itemTextSize=0x7f010001;
     }
     public static final class color {
         public static int blue=0x7f040000;
@@ -50,4 +67,50 @@ public final class R {
          */
         public static int AppBaseTheme=0x7f070000;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a BottomLeftMenu.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #BottomLeftMenu_itemTextColor com.rany.albeg.wein.bottomleftmenu:itemTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #BottomLeftMenu_itemTextSize com.rany.albeg.wein.bottomleftmenu:itemTextSize}</code></td><td></td></tr>
+           </table>
+           @see #BottomLeftMenu_itemTextColor
+           @see #BottomLeftMenu_itemTextSize
+         */
+        public static final int[] BottomLeftMenu = {
+            0x7f010000, 0x7f010001
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.rany.albeg.wein.bottomleftmenu.R.attr#itemTextColor}
+          attribute's value can be found in the {@link #BottomLeftMenu} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.rany.albeg.wein.bottomleftmenu:itemTextColor
+        */
+        public static final int BottomLeftMenu_itemTextColor = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.rany.albeg.wein.bottomleftmenu.R.attr#itemTextSize}
+          attribute's value can be found in the {@link #BottomLeftMenu} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.rany.albeg.wein.bottomleftmenu:itemTextSize
+        */
+        public static final int BottomLeftMenu_itemTextSize = 1;
+    };
 }

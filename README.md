@@ -46,7 +46,10 @@ mMenu.addMenuItem(this, R.drawable.ic_social_send_now, R.string.send, _MENU_ID_S
  */
 mMenu.setOnBottomLeftMenuItemClickListener(this);
 ```
-
+Get a reference to each one of the items in the menu, by:
+```java
+BottomLeftMenuitem item = mMenu.getMenuItemAt(index);
+```
 You might want to override **onBackPressed()** and **onKeyDown(int keyCode, KeyEvent event)** for opening and closing the menu:
 
 ```java

@@ -91,4 +91,7 @@ public class BottomLeftMenuItem extends LinearLayout {
 		return mText;
 	}
 
+	public ImageView getImageView() {
+		return mImage;
+	}
 }

@@ -14,14 +14,12 @@ Add the menu to your XML layout file:
 
     ...
 
-    <com.rany.albeg.wein.bottomleftmenu.views.BottomLeftMenu
+    <com.rany.albeg.wein.bottomleftmenu.BottomLeftMenu
         android:id="@+id/bottom_left_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/custom_menu_bg"
-        android:visibility="gone" >
-    </com.rany.albeg.wein.bottomleftmenu.views.BottomLeftMenu>
+        android:layout_alignParentBottom="true" >
+    </com.rany.albeg.wein.bottomleftmenu.BottomLeftMenu>
 
 </RelativeLayout>
 ```

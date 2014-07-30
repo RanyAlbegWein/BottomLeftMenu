@@ -25,11 +25,11 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
-import com.rany.albeg.wein.bottomleftmenu.R;
 import com.rany.albeg.wein.bottomleftmenu.BottomLeftMenuItem.OnBottomLeftMenuItemClickListener;
 
-public class BottomLeftMenu extends LinearLayout implements OnClickListener {
+public class BottomLeftMenu extends ScrollView implements OnClickListener {
 
 	private final static int					_HIGHLIGHT_MENU_ITEM_DURATION	= 500;
 	private final static int					_HIGHLIGHT_REPETITIONS			= 4;
@@ -38,6 +38,7 @@ public class BottomLeftMenu extends LinearLayout implements OnClickListener {
 	private Animation							mOpenAnimation;
 	private Animation							mCloseAnimation;
 	private Animation							mBlinkAnimation;
+	private LinearLayout						mViewsContainer;
 	private OnBottomLeftMenuItemClickListener	mOnCustomMenuItemClickListener;
 
 	public BottomLeftMenu(Context context, AttributeSet attrs) {
@@ -47,9 +48,14 @@ public class BottomLeftMenu extends LinearLayout implements OnClickListener {
 
 	private void init(Context context) {
 
-		setOrientation(LinearLayout.VERTICAL);
+		mViewsContainer = new LinearLayout(context);
+		mViewsContainer.setOrientation(LinearLayout.VERTICAL);
+		mViewsContainer.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
-		mIsOpened = getVisibility() == View.VISIBLE ? true : false;
+		setBackgroundResource(R.drawable.menu_bg);
+		setVisibility(View.GONE);
+
+		mIsOpened = false;
 		mOpenAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_up_in);
 		mCloseAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_down_out);
 		mBlinkAnimation = new AlphaAnimation(1, 0);
@@ -57,6 +63,8 @@ public class BottomLeftMenu extends LinearLayout implements OnClickListener {
 		mBlinkAnimation.setInterpolator(new LinearInterpolator());
 		mBlinkAnimation.setRepeatCount(_HIGHLIGHT_REPETITIONS);
 		mBlinkAnimation.setRepeatMode(Animation.REVERSE);
+
+		addView(mViewsContainer);
 	}
 
 	public void setOnBottomLeftMenuItemClickListener(OnBottomLeftMenuItemClickListener l) {
@@ -65,7 +73,7 @@ public class BottomLeftMenu extends LinearLayout implements OnClickListener {
 
 	private void addMenuItem(BottomLeftMenuItem item) {
 		item.setOnClickListener(this);
-		addView(item);
+		mViewsContainer.addView(item);
 	}
 
 	public void addMenuItem(Context context, int iconResource, int textResouce, int identifier) {

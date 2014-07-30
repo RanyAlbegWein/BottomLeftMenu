@@ -53,8 +53,7 @@ public class BottomLeftMenu extends ScrollView implements OnClickListener {
 		init(context);
 	}
 
-	public BottomLeftMenu(Context context, AttributeSet attrs, int defStyle)
-	{
+	public BottomLeftMenu(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BottomLeftMenu, defStyle, 0);
 		initAttrs(ta);
@@ -137,8 +136,8 @@ public class BottomLeftMenu extends ScrollView implements OnClickListener {
 		int i;
 		BottomLeftMenuItem item;
 
-		for (i = 0; i < getChildCount(); ++i) {
-			item = (BottomLeftMenuItem) getChildAt(i);
+		for (i = 0; i < mViewsContainer.getChildCount(); ++i) {
+			item = (BottomLeftMenuItem) mViewsContainer.getChildAt(i);
 			if (item.getIdentifier() == identifier) {
 				item.startAnimation(mBlinkAnimation);
 				break;

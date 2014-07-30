@@ -33,14 +33,11 @@ import com.rany.albeg.wein.bottomleftmenu.BottomLeftMenuItem.OnBottomLeftMenuIte
 
 public class BottomLeftMenu extends ScrollView implements OnClickListener {
 
-	private final static int					_HIGHLIGHT_MENU_ITEM_DURATION	= 500;
-	private final static int					_HIGHLIGHT_REPETITIONS			= 4;
-	private final static int					_DEFAULT_ITEM_TEXT_SIZE			= 15;
+	private final static int					_DEFAULT_ITEM_TEXT_SIZE	= 15;
 
 	private boolean								mIsOpened;
 	private Animation							mOpenAnimation;
 	private Animation							mCloseAnimation;
-	private Animation							mBlinkAnimation;
 	private LinearLayout						mViewsContainer;
 	private OnBottomLeftMenuItemClickListener	mOnCustomMenuItemClickListener;
 	private int									mTextColorRes;
@@ -79,11 +76,6 @@ public class BottomLeftMenu extends ScrollView implements OnClickListener {
 		mIsOpened = false;
 		mOpenAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_up_in);
 		mCloseAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_down_out);
-		mBlinkAnimation = new AlphaAnimation(1, 0);
-		mBlinkAnimation.setDuration(_HIGHLIGHT_MENU_ITEM_DURATION);
-		mBlinkAnimation.setInterpolator(new LinearInterpolator());
-		mBlinkAnimation.setRepeatCount(_HIGHLIGHT_REPETITIONS);
-		mBlinkAnimation.setRepeatMode(Animation.REVERSE);
 
 		addView(mViewsContainer);
 	}
@@ -121,28 +113,11 @@ public class BottomLeftMenu extends ScrollView implements OnClickListener {
 			startAnimation(mCloseAnimation);
 			mIsOpened = false;
 		}
-
-		if (!mBlinkAnimation.hasEnded()) {
-			mBlinkAnimation.cancel();
-			mBlinkAnimation.reset();
-		}
 	}
 
-	public void blink(int identifier) {
+	public BottomLeftMenuItem getMenuItemAt(int index) {
 
-		if (!mIsOpened)
-			openMenu();
-
-		int i;
-		BottomLeftMenuItem item;
-
-		for (i = 0; i < mViewsContainer.getChildCount(); ++i) {
-			item = (BottomLeftMenuItem) mViewsContainer.getChildAt(i);
-			if (item.getIdentifier() == identifier) {
-				item.startAnimation(mBlinkAnimation);
-				break;
-			}
-		}
+		return (BottomLeftMenuItem) mViewsContainer.getChildAt(index);
 	}
 
 	public void onClick(View v) {

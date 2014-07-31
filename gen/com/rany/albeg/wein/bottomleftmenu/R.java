@@ -9,10 +9,12 @@ package com.rany.albeg.wein.bottomleftmenu;
 
 public final class R {
     public static final class anim {
-        public static int slide_down_out=0x7f030000;
-        public static int slide_left_out=0x7f030001;
-        public static int slide_right_in=0x7f030002;
-        public static int slide_up_in=0x7f030003;
+        public static int fade_in=0x7f030000;
+        public static int fade_out=0x7f030001;
+        public static int slide_down_out=0x7f030002;
+        public static int slide_left_out=0x7f030003;
+        public static int slide_right_in=0x7f030004;
+        public static int slide_up_in=0x7f030005;
     }
     public static final class attr {
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
@@ -79,6 +81,7 @@ containing a value of this type.
 <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
 <tr><td><code>bottom_top</code></td><td>0</td><td></td></tr>
 <tr><td><code>left_right</code></td><td>1</td><td></td></tr>
+<tr><td><code>fade_in</code></td><td>2</td><td></td></tr>
 </table>
          */
         public static int openingDirection=0x7f010007;
@@ -114,6 +117,7 @@ containing a value of this type.
     }
     public static final class id {
         public static int bottom_top=0x7f040000;
+        public static int fade_in=0x7f040002;
         public static int left_right=0x7f040001;
     }
     public static final class string {
@@ -268,6 +272,7 @@ containing a value of this type.
 <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
 <tr><td><code>bottom_top</code></td><td>0</td><td></td></tr>
 <tr><td><code>left_right</code></td><td>1</td><td></td></tr>
+<tr><td><code>fade_in</code></td><td>2</td><td></td></tr>
 </table>
           @attr name com.rany.albeg.wein.bottomleftmenu:openingDirection
         */

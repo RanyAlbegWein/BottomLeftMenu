@@ -27,7 +27,7 @@ Add the menu to your XML layout file:
         app:itemPressedStateColor="#0099cc"
         app:itemTextColor="@android:color/black"
         app:itemTextSize="12sp"
-        app:openingDirection="bottom_top" <!-- Or left_right -->
+        app:openingDirection="bottom_top" <!-- More options are: left_right and fade_in-->
         app:showDivider="true"
         app:dividerHeight="1dp"
         app:dividerColor="#d3d3d3">

@@ -108,6 +108,9 @@ public class BottomLeftMenu extends ScrollView implements OnClickListener {
 		} else if (mOpeningDirection == OPENING_DIRECTION.LEFT_RIGHT) {
 			mOpenAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_right_in);
 			mCloseAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_left_out);
+		} else if (mOpeningDirection == OPENING_DIRECTION.FADE_IN) {
+			mOpenAnimation = AnimationUtils.loadAnimation(context, R.anim.fade_in);
+			mCloseAnimation = AnimationUtils.loadAnimation(context, R.anim.fade_out);
 		}
 	}
 
@@ -191,6 +194,6 @@ public class BottomLeftMenu extends ScrollView implements OnClickListener {
 	}
 
 	private enum OPENING_DIRECTION {
-		BOTTOM_TOP, LEFT_RIGHT
+		BOTTOM_TOP, LEFT_RIGHT, FADE_IN
 	}
 }

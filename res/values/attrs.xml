@@ -12,6 +12,7 @@
         <attr name="openingDirection">
             <enum name="bottom_top" value="0" />
             <enum name="left_right" value="1" />
+            <enum name="fade_in" value="2" />
         </attr>
     </declare-styleable>
 

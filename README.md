@@ -3,7 +3,7 @@
 
 ![Alt text](screenshot.jpg "BottomLeftMenuView Samsung Galaxy S2")
 
-Required min API level 8
+Required min API level 11 
 -------------------------
 
 USAGE
@@ -21,8 +21,16 @@ Add the menu to your XML layout file:
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
 
-        app:itemTextColor="@color/dark_gray"
-        app:itemTextSize="10sp" >
+        <!-- Custom attributes ( values are set to default in this example ): -->
+
+        app:itemNormalStateColor="@android:color/transparent"
+        app:itemPressedStateColor="#0099cc"
+        app:itemTextColor="@android:color/black"
+        app:itemTextSize="12sp"
+        app:openingDirection="bottom_top" <!-- Or left_right -->
+        app:showDivider="true"
+        app:dividerHeight="1dp"
+        app:dividerColor="#d3d3d3">
 
     </com.rany.albeg.wein.bottomleftmenu.BottomLeftMenu>
 

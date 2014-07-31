@@ -24,7 +24,6 @@
             <corners android:topRightRadius="4dp" />
         </shape>
     </item>
-
     <item>
         <shape>
             <padding
@@ -52,8 +51,6 @@
     <item>
         <shape>
             <solid android:color="@android:color/white" />
-
-            <corners android:topRightRadius="3dp" />
         </shape>
     </item>
 

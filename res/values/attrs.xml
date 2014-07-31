@@ -4,6 +4,15 @@
     <declare-styleable name="BottomLeftMenu">
         <attr name="itemTextColor" format="color" />
         <attr name="itemTextSize" format="dimension" />
+        <attr name="itemNormalStateColor" format="color" />
+        <attr name="itemPressedStateColor" format="color" />
+        <attr name="showDivider" format="boolean" />
+        <attr name="dividerHeight" format="dimension" />
+        <attr name="dividerColor" format="color" />
+        <attr name="openingDirection">
+            <enum name="bottom_top" value="0" />
+            <enum name="left_right" value="1" />
+        </attr>
     </declare-styleable>
 
 </resources>

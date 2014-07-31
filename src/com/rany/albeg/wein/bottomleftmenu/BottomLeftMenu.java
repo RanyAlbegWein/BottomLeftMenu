@@ -16,9 +16,14 @@
  */
 package com.rany.albeg.wein.bottomleftmenu;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,8 +36,6 @@ import com.rany.albeg.wein.bottomleftmenu.BottomLeftMenuItem.OnBottomLeftMenuIte
 
 public class BottomLeftMenu extends ScrollView implements OnClickListener {
 
-	private final static int					_DEFAULT_ITEM_TEXT_SIZE	= 15;
-
 	private boolean								mIsOpened;
 	private Animation							mOpenAnimation;
 	private Animation							mCloseAnimation;
@@ -40,6 +43,12 @@ public class BottomLeftMenu extends ScrollView implements OnClickListener {
 	private OnBottomLeftMenuItemClickListener	mOnCustomMenuItemClickListener;
 	private int									mTextColorRes;
 	private float								mTextSize;
+	private int									mNormalStateColor;
+	private int									mPressedStateColor;
+	private boolean								mShowDivider;
+	private int									mDividerHeight;
+	private int									mDividerColor;
+	private OPENING_DIRECTION					mOpeningDirection;
 
 	public BottomLeftMenu(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -55,27 +64,60 @@ public class BottomLeftMenu extends ScrollView implements OnClickListener {
 		init(context);
 	}
 
-	private void initAttrs(TypedArray ta) {
+	private void initAttrs(TypedArray a) {
 
-		mTextColorRes = ta.getColor(R.styleable.BottomLeftMenu_itemTextColor, Color.BLACK);
-		mTextSize = ta.getDimension(R.styleable.BottomLeftMenu_itemTextSize, _DEFAULT_ITEM_TEXT_SIZE);
-		ta.recycle();
+		Resources r = getResources();
+
+		mTextColorRes = a.getColor(R.styleable.BottomLeftMenu_itemTextColor, Color.BLACK);
+		mTextSize = a.getDimension(R.styleable.BottomLeftMenu_itemTextSize, r.getDimension(R.dimen.default_item_text_size));
+		mPressedStateColor = a.getColor(R.styleable.BottomLeftMenu_itemPressedStateColor,
+				r.getColor(R.color.default_item_pressed_state_color));
+		mNormalStateColor = a.getColor(R.styleable.BottomLeftMenu_itemNormalStateColor, r.getColor(android.R.color.transparent));
+		mShowDivider = a.getBoolean(R.styleable.BottomLeftMenu_showDivider, true);
+		mDividerHeight = (int) a.getDimension(R.styleable.BottomLeftMenu_dividerHeight,
+				r.getDimension(R.dimen.default_divider_height));
+		mDividerColor = a.getColor(R.styleable.BottomLeftMenu_dividerColor, r.getColor(R.color.default_divider_color));
+		mOpeningDirection = OPENING_DIRECTION.values()[a.getInt(R.styleable.BottomLeftMenu_openingDirection, 0)];
+
+		a.recycle();
 	}
 
 	private void init(Context context) {
 
 		mViewsContainer = new LinearLayout(context);
+		mViewsContainer.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		mViewsContainer.setOrientation(LinearLayout.VERTICAL);
-		mViewsContainer.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
 		setBackgroundResource(R.drawable.menu_bg);
 		setVisibility(View.GONE);
 
 		mIsOpened = false;
-		mOpenAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_up_in);
-		mCloseAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_down_out);
 
+		setOpenAnimation(context);
+
+		if (mShowDivider)
+			setDivider();
 		addView(mViewsContainer);
+	}
+
+	private void setOpenAnimation(Context context) {
+
+		if (mOpeningDirection == OPENING_DIRECTION.BOTTOM_TOP) {
+			mOpenAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_up_in);
+			mCloseAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_down_out);
+		} else if (mOpeningDirection == OPENING_DIRECTION.LEFT_RIGHT) {
+			mOpenAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_right_in);
+			mCloseAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_left_out);
+		}
+	}
+
+	private void setDivider() {
+		final ShapeDrawable divider = new ShapeDrawable();
+
+		divider.setIntrinsicHeight(mDividerHeight);
+		divider.getPaint().setColor(mDividerColor);
+		mViewsContainer.setDividerDrawable(divider);
+		mViewsContainer.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
 	}
 
 	public void setOnBottomLeftMenuItemClickListener(OnBottomLeftMenuItemClickListener l) {
@@ -83,14 +125,35 @@ public class BottomLeftMenu extends ScrollView implements OnClickListener {
 	}
 
 	private void addMenuItem(BottomLeftMenuItem item) {
+		setSelector(item);
 		item.getTextView().setTextColor(mTextColorRes);
 		item.getTextView().setTextSize(mTextSize);
 		item.setOnClickListener(this);
+
 		mViewsContainer.addView(item);
 	}
 
 	public void addMenuItem(Context context, int iconResource, int textResouce, int identifier) {
 		addMenuItem(new BottomLeftMenuItem(context, iconResource, textResouce, identifier));
+	}
+
+	@SuppressLint("NewApi")
+	private void setSelector(BottomLeftMenuItem item) {
+
+		ColorDrawable normalDrawable = new ColorDrawable(mNormalStateColor);
+		ColorDrawable pressedDrawable = new ColorDrawable(mPressedStateColor);
+
+		final StateListDrawable selector = new StateListDrawable();
+		selector.addState(new int[] { android.R.attr.state_pressed }, pressedDrawable);
+		selector.addState(new int[] {}, normalDrawable);
+
+		int sdk = android.os.Build.VERSION.SDK_INT;
+		if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+			item.setBackgroundDrawable(selector);
+		} else {
+			item.setBackground(selector);
+		}
+
 	}
 
 	public boolean isOpened() {
@@ -125,5 +188,9 @@ public class BottomLeftMenu extends ScrollView implements OnClickListener {
 
 		if (mOnCustomMenuItemClickListener != null)
 			mOnCustomMenuItemClickListener.onClick(item);
+	}
+
+	private enum OPENING_DIRECTION {
+		BOTTOM_TOP, LEFT_RIGHT
 	}
 }

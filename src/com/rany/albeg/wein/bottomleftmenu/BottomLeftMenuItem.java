@@ -17,6 +17,7 @@
 package com.rany.albeg.wein.bottomleftmenu;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,14 +25,10 @@ import android.widget.TextView;
 
 public class BottomLeftMenuItem extends LinearLayout {
 
-	private TextView			mText;
-	private ImageView			mImage;
-	private int					mIdentifier;
-	private Context				mContext;
-
-	private static final int	_DEFAULT_TEXT_PADDING		= 5;
-	private static final int	_DEFAULT_TEXT_RIGHT_MARGIN	= 20;
-	private static final int	_DEFAULT_ICON_PADDING		= 5;
+	private TextView	mText;
+	private ImageView	mImage;
+	private int			mIdentifier;
+	private Context		mContext;
 
 	public BottomLeftMenuItem(Context context, int iconResource, int textResouce, int identifier) {
 		super(context);
@@ -43,7 +40,6 @@ public class BottomLeftMenuItem extends LinearLayout {
 				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
 		setOrientation(LinearLayout.HORIZONTAL);
-		setBackgroundResource(R.drawable.menu_item_bg_states);
 		setLayoutParams(lp);
 
 		initChildViews(iconResource, textResouce);
@@ -67,24 +63,23 @@ public class BottomLeftMenuItem extends LinearLayout {
 				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 		imageLayoutParams.gravity = Gravity.CENTER;
 
+		Resources res = getResources();
+		int defIconPadding = (int) res.getDimension(R.dimen.default_item_icon_padding);
+		int defTextRightMargin = (int) res.getDimension(R.dimen.default_text_right_margin);
+		int defTextPadding = (int) res.getDimension(R.dimen.default_text_padding);
+
 		mImage.setImageResource(iconResource);
-		mImage.setPadding(_DEFAULT_ICON_PADDING, _DEFAULT_ICON_PADDING, _DEFAULT_ICON_PADDING, _DEFAULT_ICON_PADDING);
+		mImage.setPadding(defIconPadding, defIconPadding, defIconPadding, defIconPadding);
 		mImage.setLayoutParams(imageLayoutParams);
 
 		LinearLayout.LayoutParams textLayoutParams = new LinearLayout.LayoutParams(
-				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-
+				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 		textLayoutParams.gravity = Gravity.CENTER;
-		textLayoutParams.setMargins(0, 0, _DEFAULT_TEXT_RIGHT_MARGIN, 0);
+		textLayoutParams.setMargins(0, 0, defTextRightMargin, 0);
 
 		mText.setLayoutParams(textLayoutParams);
-		mText.setPadding(_DEFAULT_TEXT_PADDING, _DEFAULT_TEXT_PADDING, _DEFAULT_TEXT_PADDING, _DEFAULT_TEXT_PADDING);
+		mText.setPadding(defTextPadding, defTextPadding, defTextPadding, defTextPadding);
 		mText.setText(textResouce);
-	}
-
-	public interface OnBottomLeftMenuItemClickListener {
-
-		public void onClick(BottomLeftMenuItem item);
 	}
 
 	public TextView getTextView() {
@@ -93,5 +88,10 @@ public class BottomLeftMenuItem extends LinearLayout {
 
 	public ImageView getImageView() {
 		return mImage;
+	}
+
+	public interface OnBottomLeftMenuItemClickListener {
+
+		public void onClick(BottomLeftMenuItem item);
 	}
 }

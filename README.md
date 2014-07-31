@@ -55,22 +55,24 @@ mMenu.addMenuItem(this, R.drawable.ic_social_send_now, R.string.send, _MENU_ID_S
 mMenu.setOnBottomLeftMenuItemClickListener(this);
 ```
 Handle click events:
-```
-@Override
+```java
 public void onClick(BottomLeftMenuItem item) {
     /*
      * getIdentifier(), not getId()
      */
     int id = item.getIdentifier();
 
-    if (id == _MENU_ID_UPLOAD)
+    if (id == _MENU_ID_UPLOAD) {
         /* Upload something */
-    else if (id == _MENU_ID_SHARE)
+    }
+    else if (id == _MENU_ID_SHARE) {
         /* Share something */
-    else if (id == _MENU_ID_SEND)
+    }
+    else if (id == _MENU_ID_SEND) {
         /* Send something */
+    }
 
-    // etc...    
+    // etc...
 }
 ```
 Get a reference to each one of the items in the menu, by:

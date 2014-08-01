@@ -27,8 +27,6 @@ import android.graphics.drawable.StateListDrawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
@@ -37,8 +35,7 @@ import com.rany.albeg.wein.bottomleftmenu.BottomLeftMenuItem.OnBottomLeftMenuIte
 public class BottomLeftMenu extends ScrollView implements OnClickListener {
 
 	private boolean								mIsOpened;
-	private Animation							mOpenAnimation;
-	private Animation							mCloseAnimation;
+	private OpenCloseMenuAnimation				mOpenCloseAnimation;
 	private LinearLayout						mViewsContainer;
 	private OnBottomLeftMenuItemClickListener	mOnCustomMenuItemClickListener;
 	private int									mTextColorRes;
@@ -48,7 +45,8 @@ public class BottomLeftMenu extends ScrollView implements OnClickListener {
 	private boolean								mShowDivider;
 	private int									mDividerHeight;
 	private int									mDividerColor;
-	private OPENING_DIRECTION					mOpeningDirection;
+	private OPEN_CLOSE_ANIMATION				mOpenCloseAnimationType;
+	private Context								mContext;
 
 	public BottomLeftMenu(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -77,13 +75,14 @@ public class BottomLeftMenu extends ScrollView implements OnClickListener {
 		mDividerHeight = (int) a.getDimension(R.styleable.BottomLeftMenu_dividerHeight,
 				r.getDimension(R.dimen.default_divider_height));
 		mDividerColor = a.getColor(R.styleable.BottomLeftMenu_dividerColor, r.getColor(R.color.default_divider_color));
-		mOpeningDirection = OPENING_DIRECTION.values()[a.getInt(R.styleable.BottomLeftMenu_openingDirection, 0)];
+		mOpenCloseAnimationType = OPEN_CLOSE_ANIMATION.values()[a.getInt(R.styleable.BottomLeftMenu_openingDirection, 0)];
 
 		a.recycle();
 	}
 
 	private void init(Context context) {
 
+		mContext = context;
 		mViewsContainer = new LinearLayout(context);
 		mViewsContainer.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		mViewsContainer.setOrientation(LinearLayout.VERTICAL);
@@ -93,25 +92,23 @@ public class BottomLeftMenu extends ScrollView implements OnClickListener {
 
 		mIsOpened = false;
 
-		setOpenAnimation(context);
+		setOpenCloseAnimation(OpenCloseMenuAnimationFactory.getAnimation(context, mOpenCloseAnimationType));
 
 		if (mShowDivider)
 			setDivider();
+
 		addView(mViewsContainer);
 	}
 
-	private void setOpenAnimation(Context context) {
+	/**
+	 * Sets the open and close animations for this menu.
+	 * 
+	 * @param openCloseAnimation
+	 *            - a OpenCloseMenuAnimation implementation.
+	 */
+	public void setOpenCloseAnimation(OpenCloseMenuAnimation openCloseAnimation) {
 
-		if (mOpeningDirection == OPENING_DIRECTION.BOTTOM_TOP) {
-			mOpenAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_up_in);
-			mCloseAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_down_out);
-		} else if (mOpeningDirection == OPENING_DIRECTION.LEFT_RIGHT) {
-			mOpenAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_right_in);
-			mCloseAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_left_out);
-		} else if (mOpeningDirection == OPENING_DIRECTION.FADE_IN) {
-			mOpenAnimation = AnimationUtils.loadAnimation(context, R.anim.fade_in);
-			mCloseAnimation = AnimationUtils.loadAnimation(context, R.anim.fade_out);
-		}
+		mOpenCloseAnimation = openCloseAnimation;
 	}
 
 	private void setDivider() {
@@ -136,8 +133,19 @@ public class BottomLeftMenu extends ScrollView implements OnClickListener {
 		mViewsContainer.addView(item);
 	}
 
-	public void addMenuItem(Context context, int iconResource, int textResouce, int identifier) {
-		addMenuItem(new BottomLeftMenuItem(context, iconResource, textResouce, identifier));
+	/**
+	 * Add an item to the menu.
+	 * 
+	 * @param iconResource
+	 *            - Resource id for the item's icon.
+	 * @param textResouce
+	 *            - Resource id for the item's text.
+	 * @param identifier
+	 *            - A unique identifier, to identify this item for handling
+	 *            click events.
+	 */
+	public void addMenuItem(int iconResource, int textResouce, int identifier) {
+		addMenuItem(new BottomLeftMenuItem(mContext, iconResource, textResouce, identifier));
 	}
 
 	@SuppressLint("NewApi")
@@ -156,7 +164,6 @@ public class BottomLeftMenu extends ScrollView implements OnClickListener {
 		} else {
 			item.setBackground(selector);
 		}
-
 	}
 
 	public boolean isOpened() {
@@ -166,7 +173,7 @@ public class BottomLeftMenu extends ScrollView implements OnClickListener {
 	public void openMenu() {
 		if (!mIsOpened) {
 			setVisibility(View.VISIBLE);
-			startAnimation(mOpenAnimation);
+			startAnimation(mOpenCloseAnimation.open());
 			mIsOpened = true;
 		}
 	}
@@ -174,7 +181,7 @@ public class BottomLeftMenu extends ScrollView implements OnClickListener {
 	public void closeMenu() {
 		if (mIsOpened) {
 			setVisibility(View.GONE);
-			startAnimation(mCloseAnimation);
+			startAnimation(mOpenCloseAnimation.close());
 			mIsOpened = false;
 		}
 	}
@@ -193,7 +200,7 @@ public class BottomLeftMenu extends ScrollView implements OnClickListener {
 			mOnCustomMenuItemClickListener.onClick(item);
 	}
 
-	private enum OPENING_DIRECTION {
+	public enum OPEN_CLOSE_ANIMATION {
 		BOTTOM_TOP, LEFT_RIGHT, FADE_IN
 	}
 }

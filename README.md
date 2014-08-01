@@ -42,13 +42,13 @@ mMenu = (BottomLeftMenuView) findViewById(R.id.bottom_left_menu);
 /*
  * Populate the menu with views.
  */
-mMenu.addMenuItem(this, R.drawable.ic_action_settings, R.string.settings, _MENU_ID_SETTINGS);
-mMenu.addMenuItem(this, R.drawable.ic_action_about, R.string.about, _MENU_ID_ABOUT);
-mMenu.addMenuItem(this, R.drawable.ic_rating_good, R.string.rate, _MENU_ID_RATE);
-mMenu.addMenuItem(this, R.drawable.ic_action_search, R.string.search, _MENU_ID_SEARCH);
-mMenu.addMenuItem(this, R.drawable.ic_social_share, R.string.share, _MENU_ID_SHARE);
-mMenu.addMenuItem(this, R.drawable.ic_collections_cloud, R.string.upload, _MENU_ID_UPLOAD);
-mMenu.addMenuItem(this, R.drawable.ic_social_send_now, R.string.send, _MENU_ID_SEND);
+mMenu.addMenuItem(R.drawable.ic_action_settings, R.string.settings, _MENU_ID_SETTINGS);
+mMenu.addMenuItem(R.drawable.ic_action_about, R.string.about, _MENU_ID_ABOUT);
+mMenu.addMenuItem(R.drawable.ic_rating_good, R.string.rate, _MENU_ID_RATE);
+mMenu.addMenuItem(R.drawable.ic_action_search, R.string.search, _MENU_ID_SEARCH);
+mMenu.addMenuItem(R.drawable.ic_social_share, R.string.share, _MENU_ID_SHARE);
+mMenu.addMenuItem(R.drawable.ic_collections_cloud, R.string.upload, _MENU_ID_UPLOAD);
+mMenu.addMenuItem(R.drawable.ic_social_send_now, R.string.send, _MENU_ID_SEND);
 /*
  * Set a listener for click events.
  */
@@ -80,6 +80,21 @@ Get a reference to each one of the items in the menu, by:
 BottomLeftMenuItem item = mMenu.getMenuItemAt(index);
 TextView itemText= item.getTextView();
 ImageView itemIcon = item.getImageView();
+```
+You can implement your own custom animation for opening and closing the menu:
+```java
+mMenu.setOpenCloseAnimation(new OpenCloseMenuAnimation(this) {
+    
+    @Override
+    public Animation open() {
+        /* Return an Animation object for opening the menu. */
+    }
+    
+    @Override
+    public Animation close() {
+        /* Return an Animation object for closing the menu. */
+    }
+});
 ```
 You might want to override **onBackPressed()** and **onKeyDown(int keyCode, KeyEvent event)** for opening and closing the menu:
 

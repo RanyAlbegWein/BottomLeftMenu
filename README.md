@@ -56,6 +56,7 @@ mMenu.setOnBottomLeftMenuItemClickListener(this);
 ```
 Handle click events:
 ```java
+@Override
 public void onClick(BottomLeftMenuItem item) {
     /*
      * getIdentifier(), not getId()
@@ -77,13 +78,13 @@ public void onClick(BottomLeftMenuItem item) {
 ```
 MORE FEATURES
 -------------
-**1**.You can get a reference to each one of the items in the menu, by:
+**1**. Get a reference to each one of the items in the menu, by:
 ```java
 BottomLeftMenuItem item = mMenu.getMenuItemAt(index);
 TextView itemText= item.getTextView();
 ImageView itemIcon = item.getImageView();
 ```
-**2**.You can implement your own custom animation for opening and closing the menu:
+**2**. Implement your own custom animation for opening and closing the menu:
 ```java
 mMenu.setOpenCloseAnimation(new OpenCloseMenuAnimation(this) {
     

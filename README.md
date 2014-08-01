@@ -6,8 +6,8 @@
 Required min API level 11 
 -------------------------
 
-USAGE
-------
+BASIC USAGE
+-----------
 Add the menu to your XML layout file:
 ```java
 <RelativeLayout
@@ -75,13 +75,15 @@ public void onClick(BottomLeftMenuItem item) {
     // etc...
 }
 ```
-Get a reference to each one of the items in the menu, by:
+MORE FEATURES
+-------------
+**1**.You can get a reference to each one of the items in the menu, by:
 ```java
 BottomLeftMenuItem item = mMenu.getMenuItemAt(index);
 TextView itemText= item.getTextView();
 ImageView itemIcon = item.getImageView();
 ```
-You can implement your own custom animation for opening and closing the menu:
+**2**.You can implement your own custom animation for opening and closing the menu:
 ```java
 mMenu.setOpenCloseAnimation(new OpenCloseMenuAnimation(this) {
     
@@ -96,6 +98,8 @@ mMenu.setOpenCloseAnimation(new OpenCloseMenuAnimation(this) {
     }
 });
 ```
+EXTRA
+--------
 You might want to override **onBackPressed()** and **onKeyDown(int keyCode, KeyEvent event)** for opening and closing the menu:
 
 ```java

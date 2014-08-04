@@ -1,4 +1,4 @@
-![Alt text](res/drawable-hdpi/ic_launcher.png "Icon") An easy to use menu view, located in the bottom left corner of the screen.
+An easy to use menu view, located in the bottom left corner of the screen.
 ===================
 
 ![Alt text](screenshot.jpg "BottomLeftMenuView Samsung Galaxy S2")

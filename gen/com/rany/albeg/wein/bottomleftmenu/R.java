@@ -99,12 +99,6 @@ containing a value of this type.
         public static int default_item_pressed_state_color=0x7f050000;
     }
     public static final class dimen {
-        /** 
-         Customize dimensions originally defined in res/values/dimens.xml (such as
-         screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
-    
-         */
-        public static int activity_horizontal_margin=0x7f060005;
         public static int default_divider_height=0x7f060001;
         public static int default_item_icon_padding=0x7f060004;
         public static int default_item_text_size=0x7f060000;
@@ -112,8 +106,7 @@ containing a value of this type.
         public static int default_text_right_margin=0x7f060003;
     }
     public static final class drawable {
-        public static int ic_launcher=0x7f020000;
-        public static int menu_bg=0x7f020001;
+        public static int menu_bg=0x7f020000;
     }
     public static final class id {
         public static int bottom_top=0x7f040000;
@@ -122,21 +115,6 @@ containing a value of this type.
     }
     public static final class string {
         public static int app_name=0x7f070000;
-    }
-    public static final class style {
-        /** 
-        Base application theme for API 11+. This theme completely replaces
-        AppBaseTheme from res/values/styles.xml on API 11+ devices.
-    
- API 11 theme customizations can go here. 
-
-        Base application theme for API 14+. This theme completely replaces
-        AppBaseTheme from BOTH res/values/styles.xml and
-        res/values-v11/styles.xml on API 14+ devices.
-    
- API 14 theme customizations can go here. 
-         */
-        public static int AppBaseTheme=0x7f080000;
     }
     public static final class styleable {
         /** Attributes that can be used with a BottomLeftMenu.

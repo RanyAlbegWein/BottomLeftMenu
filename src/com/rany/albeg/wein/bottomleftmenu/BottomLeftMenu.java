@@ -27,6 +27,8 @@ import android.graphics.drawable.StateListDrawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
@@ -193,11 +195,30 @@ public class BottomLeftMenu extends ScrollView implements OnClickListener {
 
 	public void onClick(View v) {
 
-		closeMenu();
-		BottomLeftMenuItem item = (BottomLeftMenuItem) v;
+		final BottomLeftMenuItem item = (BottomLeftMenuItem) v;
+		/*
+		 * The menu must be opened. No need to check.
+		 */
+		setVisibility(View.GONE);
+		Animation closeAnim = mOpenCloseAnimation.close();
+		closeAnim.setAnimationListener(new AnimationListener() {
 
-		if (mOnCustomMenuItemClickListener != null)
-			mOnCustomMenuItemClickListener.onClick(item);
+			@Override
+			public void onAnimationStart(Animation animation) {
+			}
+
+			@Override
+			public void onAnimationRepeat(Animation animation) {
+			}
+
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				if (mOnCustomMenuItemClickListener != null)
+					mOnCustomMenuItemClickListener.onClick(item);
+				mIsOpened = false;
+			}
+		});
+		startAnimation(closeAnim);
 	}
 
 	public enum OPEN_CLOSE_ANIMATION {

@@ -12,7 +12,7 @@ BASIC USAGE
 Edit your gradle script to include the library:
 ```java
 dependencies {
-        compile 'com.rany.albeg.wein.bottomleftmenu:bottom-left-menu:1.0.0'
+        compile 'com.rany.albeg.wein.bottomleftmenu:bottom-left-menu:1.0.1'
 }
 ```
 

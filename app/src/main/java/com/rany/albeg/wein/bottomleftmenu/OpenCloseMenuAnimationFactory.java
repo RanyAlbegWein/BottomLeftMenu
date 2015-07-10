@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.rany.albeg.wein.bottomleftmenu.BottomLeftMenu.OPEN_CLOSE_ANIMATION;
 import com.rany.albeg.wein.bottomleftmenu.animations.BottomUp;
-import com.rany.albeg.wein.bottomleftmenu.animations.FadeIn;
+import com.rany.albeg.wein.bottomleftmenu.animations.FadeInOut;
 import com.rany.albeg.wein.bottomleftmenu.animations.LeftRight;
 
 public class OpenCloseMenuAnimationFactory {
@@ -19,9 +19,9 @@ public class OpenCloseMenuAnimationFactory {
 
 			animation = new LeftRight(context);
 
-		} else if (animType == OPEN_CLOSE_ANIMATION.FADE_IN) {
+		} else if (animType == OPEN_CLOSE_ANIMATION.FADE_IN_OUT) {
 
-			animation = new FadeIn(context);
+			animation = new FadeInOut(context);
 		}
 
 		return animation;

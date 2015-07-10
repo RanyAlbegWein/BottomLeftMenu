@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/RanyAlbegWein/BottomLeftMenu'
     gitUrl = 'https://github.com/RanyAlbegWein/BottomLeftMenu.git'
 
-    libraryVersion = '1.0.0'
+    libraryVersion = '1.0.1'
 
     developerId = 'ranyalbegwein'
     developerName = 'Rany Albeg Wein'

@@ -3,7 +3,7 @@ package com.rany.albeg.wein.bottomleftmenu;
 import android.content.Context;
 
 import com.rany.albeg.wein.bottomleftmenu.BottomLeftMenu.OPEN_CLOSE_ANIMATION;
-import com.rany.albeg.wein.bottomleftmenu.animations.BottomUp;
+import com.rany.albeg.wein.bottomleftmenu.animations.BottomTop;
 import com.rany.albeg.wein.bottomleftmenu.animations.FadeInOut;
 import com.rany.albeg.wein.bottomleftmenu.animations.LeftRight;
 
@@ -13,7 +13,7 @@ public class OpenCloseMenuAnimationFactory {
 		OpenCloseMenuAnimation animation = null;
 		if (animType == OPEN_CLOSE_ANIMATION.BOTTOM_TOP) {
 
-			animation = new BottomUp(context);
+			animation = new BottomTop(context);
 
 		} else if (animType == OPEN_CLOSE_ANIMATION.LEFT_RIGHT) {
 

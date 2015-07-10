@@ -36,11 +36,11 @@ public class BottomLeftMenuItem extends LinearLayout {
 		mContext = context;
 		mIdentifier = identifier;
 
-		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
 				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
 		setOrientation(LinearLayout.HORIZONTAL);
-		setLayoutParams(lp);
+		setLayoutParams(layoutParams);
 
 		initChildViews(iconResource, textResouce);
 		addViews();
@@ -92,6 +92,6 @@ public class BottomLeftMenuItem extends LinearLayout {
 
 	public interface OnBottomLeftMenuItemClickListener {
 
-		public void onClick(BottomLeftMenuItem item);
+		void onClick(BottomLeftMenuItem item);
 	}
 }

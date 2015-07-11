@@ -12,7 +12,7 @@ BASIC USAGE
 Edit your gradle script to include the library:
 ```java
 dependencies {
-        compile 'com.rany.albeg.wein.bottomleftmenu:bottom-left-menu:1.0.3'
+        compile 'com.rany.albeg.wein.bottomleftmenu:bottom-left-menu:1.0.4'
 }
 ```
 
@@ -46,7 +46,7 @@ Add the menu to your XML layout file:
 ```
 Use the menu in java code, like so:
 ```java
-mMenu = (BottomLeftMenuView) findViewById(R.id.bottom_left_menu);
+mMenu = (BottomLeftMenu) findViewById(R.id.bottom_left_menu);
 /*
  * Populate the menu with views.
  */

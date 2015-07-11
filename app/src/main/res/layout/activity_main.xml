@@ -1,0 +1,30 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp"
+        android:onClick="openOrCloseMenu"
+        android:text="@string/open" />
+
+    <com.rany.albeg.wein.bottomleftmenu.BottomLeftMenu
+        android:id="@+id/bottom_left_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:dividerColor="#d3d3d3"
+        app:dividerHeight="1dp"
+        app:itemNormalStateColor="@android:color/transparent"
+        app:itemPressedStateColor="#0099cc"
+        app:itemTextColor="@android:color/black"
+        app:itemTextSize="12sp"
+        app:openingDirection="left_right"
+        app:showDivider="true" />
+
+
+</RelativeLayout>

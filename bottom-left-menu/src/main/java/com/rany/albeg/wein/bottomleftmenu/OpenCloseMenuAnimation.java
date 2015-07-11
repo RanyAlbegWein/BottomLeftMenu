@@ -20,13 +20,13 @@ import android.view.animation.Animation;
 
 public abstract class OpenCloseMenuAnimation {
 
-    protected Context mContext;
+	protected Context mContext;
 
-    public OpenCloseMenuAnimation(Context context) {
-        mContext = context;
-    }
+	public OpenCloseMenuAnimation(Context context) {
+		mContext = context;
+	}
 
-    public abstract Animation open();
+	public abstract Animation open();
 
-    public abstract Animation close();
+	public abstract Animation close();
 }

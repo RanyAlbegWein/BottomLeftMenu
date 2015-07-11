@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="default_item_pressed_state_color">#0099cc</color>
+    <color name="default_divider_color">#d3d3d3</color>
+
+</resources>

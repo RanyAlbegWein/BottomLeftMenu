@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="green">#BCED91</color>
+    <string name="app_name">BottomLeftMenu</string>
 
 </resources>

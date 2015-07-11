@@ -24,21 +24,21 @@ import com.rany.albeg.wein.bottomleftmenu.animations.LeftRight;
 
 public class OpenCloseMenuAnimationFactory {
 
-    public static OpenCloseMenuAnimation getAnimation(Context context, OPEN_CLOSE_ANIMATION animType) {
-        OpenCloseMenuAnimation animation = null;
-        if (animType == OPEN_CLOSE_ANIMATION.BOTTOM_TOP) {
+	public static OpenCloseMenuAnimation getAnimation(Context context, OPEN_CLOSE_ANIMATION animType) {
+		OpenCloseMenuAnimation animation = null;
+		if (animType == OPEN_CLOSE_ANIMATION.BOTTOM_TOP) {
 
-            animation = new BottomTop(context);
+			animation = new BottomTop(context);
 
-        } else if (animType == OPEN_CLOSE_ANIMATION.LEFT_RIGHT) {
+		} else if (animType == OPEN_CLOSE_ANIMATION.LEFT_RIGHT) {
 
-            animation = new LeftRight(context);
+			animation = new LeftRight(context);
 
-        } else if (animType == OPEN_CLOSE_ANIMATION.FADE_IN_OUT) {
+		} else if (animType == OPEN_CLOSE_ANIMATION.FADE_IN_OUT) {
 
-            animation = new FadeInOut(context);
-        }
+			animation = new FadeInOut(context);
+		}
 
-        return animation;
-    }
+		return animation;
+	}
 }

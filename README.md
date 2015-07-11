@@ -1,4 +1,4 @@
-An easy to use menu view, located in the bottom left corner of the screen.
+An easy to use menu view, located at the bottom left corner of the screen.
 ===================
 
 ![Alt text](screenshot.jpg "BottomLeftMenuView Samsung Galaxy S2")
@@ -8,6 +8,7 @@ Required min API level 11
 
 BASIC USAGE
 -----------
+[ ![Download](https://api.bintray.com/packages/ranyalbegwein/maven/bottom-left-menu/images/download.svg) ](https://bintray.com/ranyalbegwein/maven/bottom-left-menu/_latestVersion)
 
 Edit your gradle script to include the library:
 ```java

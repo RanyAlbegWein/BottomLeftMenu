@@ -95,7 +95,7 @@ ImageView itemIcon = item.getImageView();
 ```
 **2**. Implement your own custom animation for opening and closing the menu:
 ```java
-mMenu.setOpenCloseAnimation(new OpenCloseMenuAnimation(this) {
+mMenu.setOpenCloseAnimation(new OpenCloseAnimation(this) {
     
     @Override
     public Animation open() {

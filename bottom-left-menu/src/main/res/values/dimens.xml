@@ -3,8 +3,8 @@
 
     <dimen name="default_item_text_size">12sp</dimen>
     <dimen name="default_divider_height">1dp</dimen>
-    <dimen name="default_text_padding">5dp</dimen>
-    <dimen name="default_text_right_margin">10dp</dimen>
-    <dimen name="default_item_icon_padding">5dp</dimen>
+    <dimen name="padding_default_text">5dp</dimen>
+    <dimen name="margin_default_text_right">10dp</dimen>
+    <dimen name="padding_default_item_icon">5dp</dimen>
 
 </resources>

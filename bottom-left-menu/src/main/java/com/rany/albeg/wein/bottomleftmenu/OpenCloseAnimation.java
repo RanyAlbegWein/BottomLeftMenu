@@ -13,28 +13,20 @@
 * limitations under the License.
 */
 
-package com.rany.albeg.wein.bottomleftmenu.animations;
+package com.rany.albeg.wein.bottomleftmenu;
 
 import android.content.Context;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
-import com.rany.albeg.wein.bottomleftmenu.OpenCloseAnimation;
-import com.rany.albeg.wein.bottomleftmenu.R;
+public abstract class OpenCloseAnimation {
 
-public class BottomTop extends OpenCloseAnimation {
+	protected Context mContext;
 
-	public BottomTop(Context context) {
-		super(context);
+	public OpenCloseAnimation(Context context) {
+		mContext = context;
 	}
 
-	@Override
-	public Animation open() {
-		return AnimationUtils.loadAnimation(mContext, R.anim.slide_up_in);
-	}
+	public abstract Animation open();
 
-	@Override
-	public Animation close() {
-		return AnimationUtils.loadAnimation(mContext, R.anim.slide_down_out);
-	}
+	public abstract Animation close();
 }

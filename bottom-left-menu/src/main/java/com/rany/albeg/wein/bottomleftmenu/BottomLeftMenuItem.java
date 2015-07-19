@@ -29,7 +29,7 @@ public class BottomLeftMenuItem extends LinearLayout {
 	private int			mIdentifier;
 	private Context		mContext;
 
-	public BottomLeftMenuItem(Context context, int iconResource, int textResouce, int identifier) {
+	public BottomLeftMenuItem(Context context, int iconResource, int textResource, int identifier) {
 		super(context);
 
 		mContext = context;
@@ -41,7 +41,7 @@ public class BottomLeftMenuItem extends LinearLayout {
 		setOrientation(LinearLayout.HORIZONTAL);
 		setLayoutParams(layoutParams);
 
-		initChildViews(iconResource, textResouce);
+		initChildViews(iconResource, textResource);
 		addViews();
 	}
 
@@ -63,9 +63,9 @@ public class BottomLeftMenuItem extends LinearLayout {
 		imageLayoutParams.gravity = Gravity.CENTER;
 
 		Resources res = getResources();
-		int defIconPadding = (int) res.getDimension(R.dimen.default_item_icon_padding);
-		int defTextRightMargin = (int) res.getDimension(R.dimen.default_text_right_margin);
-		int defTextPadding = (int) res.getDimension(R.dimen.default_text_padding);
+		int defIconPadding = (int) res.getDimension(R.dimen.padding_default_item_icon);
+		int defTextRightMargin = (int) res.getDimension(R.dimen.margin_default_text_right);
+		int defTextPadding = (int) res.getDimension(R.dimen.padding_default_text);
 
 		mImage.setImageResource(iconResource);
 		mImage.setPadding(defIconPadding, defIconPadding, defIconPadding, defIconPadding);

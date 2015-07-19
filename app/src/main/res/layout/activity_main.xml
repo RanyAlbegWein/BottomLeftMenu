@@ -17,14 +17,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:dividerColor="#d3d3d3"
-        app:dividerHeight="1dp"
-        app:itemNormalStateColor="@android:color/transparent"
-        app:itemPressedStateColor="#0099cc"
-        app:itemTextColor="@android:color/black"
-        app:itemTextSize="12sp"
-        app:openingDirection="left_right"
-        app:showDivider="true" />
+        app:blm_dividerColor="#d3d3d3"
+        app:blm_dividerHeight="1dp"
+        app:blm_itemNormalStateColor="@android:color/transparent"
+        app:blm_itemPressedStateColor="#0099cc"
+        app:blm_itemTextColor="@android:color/black"
+        app:blm_itemTextSize="12sp"
+        app:blm_openCloseAnimation="bottom_top"
+        app:blm_showDivider="true" />
 
 
 </RelativeLayout>

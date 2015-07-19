@@ -13,7 +13,7 @@ BASIC USAGE
 Edit your gradle script to include the library:
 ```java
 dependencies {
-        compile 'com.rany.albeg.wein.bottomleftmenu:bottom-left-menu:1.0.4'
+        compile 'com.rany.albeg.wein.bottomleftmenu:bottom-left-menu:1.1.4'
 }
 ```
 
@@ -32,14 +32,14 @@ Add the menu to your XML layout file:
 
         <!-- Custom attributes ( values are set to default in this example ): -->
 
-        app:itemNormalStateColor="@android:color/transparent"
-        app:itemPressedStateColor="#0099cc"
-        app:itemTextColor="@android:color/black"
-        app:itemTextSize="12sp"
-        app:openingDirection="bottom_top" <!-- More options are: left_right and fade_in-->
-        app:showDivider="true"
-        app:dividerHeight="1dp"
-        app:dividerColor="#d3d3d3">
+        app:blm_itemNormalStateColor="@android:color/transparent"
+        app:blm_itemPressedStateColor="#0099cc"
+        app:blm_itemTextColor="@android:color/black"
+        app:blm_itemTextSize="12sp"
+        app:blm_openCloseAnimation="bottom_top" <!-- More options are: left_right and fade_in-->
+        app:blm_showDivider="true"
+        app:blm_dividerHeight="1dp"
+        app:blm_dividerColor="#d3d3d3">
 
     </com.rany.albeg.wein.bottomleftmenu.BottomLeftMenu>
 

@@ -19,10 +19,10 @@ import android.content.Context;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-import com.rany.albeg.wein.bottomleftmenu.OpenCloseMenuAnimation;
+import com.rany.albeg.wein.bottomleftmenu.OpenCloseAnimation;
 import com.rany.albeg.wein.bottomleftmenu.R;
 
-public class LeftRight extends OpenCloseMenuAnimation {
+public class LeftRight extends OpenCloseAnimation {
 
 	public LeftRight(Context context) {
 		super(context);

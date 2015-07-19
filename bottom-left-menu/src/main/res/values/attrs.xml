@@ -2,14 +2,14 @@
 <resources>
 
     <declare-styleable name="BottomLeftMenu">
-        <attr name="itemTextColor" format="color" />
-        <attr name="itemTextSize" format="dimension" />
-        <attr name="itemNormalStateColor" format="color" />
-        <attr name="itemPressedStateColor" format="color" />
-        <attr name="showDivider" format="boolean" />
-        <attr name="dividerHeight" format="dimension" />
-        <attr name="dividerColor" format="color" />
-        <attr name="openingDirection">
+        <attr name="blm_itemTextColor" format="color" />
+        <attr name="blm_itemTextSize" format="dimension" />
+        <attr name="blm_itemNormalStateColor" format="color" />
+        <attr name="blm_itemPressedStateColor" format="color" />
+        <attr name="blm_showDivider" format="boolean" />
+        <attr name="blm_dividerHeight" format="dimension" />
+        <attr name="blm_dividerColor" format="color" />
+        <attr name="blm_openCloseAnimation">
             <enum name="bottom_top" value="0" />
             <enum name="left_right" value="1" />
             <enum name="fade_in" value="2" />

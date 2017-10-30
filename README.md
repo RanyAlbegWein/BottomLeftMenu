@@ -1,3 +1,5 @@
+Deprecated
+===========
 An easy to use menu view, located at the bottom left corner of the screen.
 ===================
 
